@@ -11,7 +11,6 @@
 
   <script src="script.js"></script>
   <script>
-    // Obtener ID de la película desde la URL
     const params = new URLSearchParams(window.location.search);
     const movieId = params.get('id');
     const movie = movies.find(m => m.id === movieId);
@@ -49,13 +48,8 @@
       `;
     }
 
-    function toggleLike(btn) {
-      btn.classList.toggle('liked');
-    }
-
-    function toggleList(btn) {
-      btn.classList.toggle('added');
-    }
+    function toggleLike(btn) { btn.classList.toggle('liked'); }
+    function toggleList(btn) { btn.classList.toggle('added'); }
   </script>
 </body>
 </html>
