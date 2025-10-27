@@ -1,86 +1,143 @@
-const movies = [
-  {
-    id: "spiderverse",
-    title: "Spider-Man: Un Nuevo Universo",
-    year: 2018,
-    duration: "1h 51min",
-    rating: "PG-13",
-    genres: ["Animación", "Acción", "Inspiradora"],
-    description:
-      "Miles Morales descubre un multiverso donde cualquiera puede ser Spider-Man. Ganadora del Óscar® a Mejor Película Animada.",
-    trailerUrl: "assets/sample-trailer.mp4",
-    poster: "assets/poster-spiderverse.jpg",
-    rentPrice: "MX$50.00",
-    buyPrice: "MX$149.00",
-  },
-  {
-    id: "oppenheimer",
-    title: "Oppenheimer",
-    year: 2023,
-    duration: "3h 0min",
-    rating: "R",
-    genres: ["Drama", "Histórica", "Biográfica"],
-    description:
-      "La historia de J. Robert Oppenheimer, el físico detrás del Proyecto Manhattan y la bomba atómica.",
-    trailerUrl: "assets/sample-trailer.mp4",
-    poster: "assets/poster-oppenheimer.jpg",
-    rentPrice: "MX$70.00",
-    buyPrice: "MX$199.00",
-  },
-  {
-    id: "barbie",
-    title: "Barbie",
-    year: 2023,
-    duration: "1h 54min",
-    rating: "PG-13",
-    genres: ["Comedia", "Fantasía"],
-    description:
-      "Barbie vive en Barbieland, un mundo perfecto hasta que una crisis existencial la lleva al mundo real.",
-    trailerUrl: "assets/sample-trailer.mp4",
-    poster: "assets/poster-barbie.jpg",
-    rentPrice: "MX$60.00",
-    buyPrice: "MX$179.00",
-  },
-  {
-    id: "johnwick4",
-    title: "John Wick 4",
-    year: 2023,
-    duration: "2h 49min",
-    rating: "R",
-    genres: ["Acción", "Crimen"],
-    description:
-      "John Wick descubre un camino para derrotar a la Alta Mesa, pero primero debe enfrentarse a poderosos enemigos.",
-    trailerUrl: "assets/sample-trailer.mp4",
-    poster: "assets/poster-johnwick4.jpg",
-    rentPrice: "MX$70.00",
-    buyPrice: "MX$199.00",
-  },
-  {
-    id: "dune2",
-    title: "Dune: Parte Dos",
-    year: 2024,
-    duration: "2h 45min",
-    rating: "PG-13",
-    genres: ["Ciencia ficción", "Aventura"],
-    description:
-      "Paul Atreides se une a los Fremen en su camino de venganza contra quienes destruyeron su familia.",
-    trailerUrl: "assets/sample-trailer.mp4",
-    poster: "assets/poster-dune2.jpg",
-    rentPrice: "MX$80.00",
-    buyPrice: "MX$220.00",
-  },
-  {
-    id: "guardians3",
-    title: "Guardianes de la Galaxia Vol. 3",
-    year: 2023,
-    duration: "2h 30min",
-    rating: "PG-13",
-    genres: ["Acción", "Comedia", "Ciencia ficción"],
-    description:
-      "Peter Quill y su equipo se enfrentan a una nueva amenaza mientras intentan proteger a uno de los suyos.",
-    trailerUrl: "assets/sample-trailer.mp4",
-    poster: "assets/poster-guardians3.jpg",
-    rentPrice: "MX$65.00",
-    buyPrice: "MX$189.00",
-  },
-];
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+
+body {
+  margin: 0;
+  background-color: #000;
+  color: white;
+  font-family: 'Inter', sans-serif;
+}
+
+header {
+  text-align: center;
+  padding: 1.5rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.catalog {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  padding: 1.5rem;
+}
+
+.movie-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+.movie-card:hover {
+  transform: scale(1.05);
+}
+.movie-card img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+.movie-card .overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem;
+  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+}
+.movie-card .overlay h2 {
+  font-size: 1rem;
+  margin: 0;
+}
+
+/* --- Movie Detail --- */
+.movie-hero {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.movie-hero video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.overlay-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.95) 10%, rgba(0,0,0,0.7) 50%, transparent);
+}
+
+.movie-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: flex-end;
+  height: 100%;
+  padding: 2rem 4rem;
+  gap: 2rem;
+}
+
+.poster {
+  width: 220px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.6);
+}
+
+.info h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+}
+
+.info .meta {
+  color: #bbb;
+  margin-top: .5rem;
+}
+
+.description {
+  margin-top: 1rem;
+  max-width: 700px;
+  color: #ddd;
+}
+
+.actions {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+.actions button {
+  background-color: rgba(255,255,255,0.1);
+  border: none;
+  color: white;
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.actions button.play {
+  background-color: white;
+  color: black;
+  font-weight: 600;
+}
+.actions button:hover {
+  background-color: rgba(255,255,255,0.25);
+}
+button.liked, button.added {
+  background-color: #e50914 !important;
+}
+
+.genres {
+  margin-top: 1rem;
+}
+.genres span {
+  background: rgba(255,255,255,0.1);
+  padding: 0.3rem 0.6rem;
+  border-radius: 5px;
+  margin-right: 0.4rem;
+  font-size: 0.8rem;
+}
