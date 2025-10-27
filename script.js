@@ -1,3 +1,4 @@
+// script.js - corregido: ahora incluye la lógica para renderizar el catálogo en index.html
 const sampleTrailer = "https://www.w3schools.com/html/mov_bbb.mp4"; // Tráiler genérico temporal
 
 const movies = [
@@ -86,3 +87,38 @@ const movies = [
     buyPrice: "MX$199.00",
   },
 ];
+
+// --- Renderizado del catálogo (index.html) ---
+// Este bloque fue el que faltaba: si existe el contenedor #movie-list,
+// crea las tarjetas y las añade al DOM.
+(function renderCatalog() {
+  const movieList = document.getElementById("movie-list");
+  if (!movieList) return; // Si estamos en movie.html no hacemos nada aquí
+
+  // Limpia por si acaso
+  movieList.innerHTML = "";
+
+  movies.forEach((movie) => {
+    const card = document.createElement("div");
+    card.className = "movie-card";
+
+    // Estructura interna de la tarjeta
+    card.innerHTML = `
+      <img src="${movie.poster}" alt="${movie.title}" onerror="this.onerror=null;this.src='https://via.placeholder.com/400x600/000000/FFFFFF?text=No+image';">
+      <div class="overlay">
+        <h2>${movie.title}</h2>
+        <p>${movie.year}</p>
+      </div>
+    `;
+
+    // Al hacer click vamos a la página de detalle
+    card.addEventListener("click", () => {
+      window.location.href = `movie.html?id=${encodeURIComponent(movie.id)}`;
+    });
+
+    movieList.appendChild(card);
+  });
+})();
+
+// (Opcional) Exponer movies en global para debugging en consola
+window.__MOVIES__ = movies;
