@@ -1,34 +1,87 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Prime Style - Catálogo</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <header>
-    <h1>Películas Populares</h1>
-  </header>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ShareFilms | Catálogo</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      body {
+        margin: 0;
+        background-color: #0d0d0d;
+        color: #fff;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
 
-  <main id="catalog" class="catalog"></main>
+      header {
+        text-align: center;
+        padding: 1.5rem 0;
+        background: linear-gradient(to right, #0f0f0f, #1c1c1c);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+      }
 
-  <script src="script.js"></script>
-  <script>
-    const catalog = document.getElementById('catalog');
-    movies.forEach(movie => {
-      const card = document.createElement('div');
-      card.className = 'movie-card';
-      card.innerHTML = `
-        <img src="${movie.poster}" alt="${movie.title}">
-        <div class="overlay">
-          <h2>${movie.title}</h2>
-          <p>${movie.year}</p>
-        </div>
-      `;
-      card.onclick = () => window.location.href = `movie.html?id=${movie.id}`;
-      catalog.appendChild(card);
-    });
-  </script>
-</body>
+      h1 {
+        font-weight: 600;
+        color: #00a8e1;
+        letter-spacing: 1px;
+      }
+
+      main.catalog {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.5rem;
+        padding: 2rem;
+        justify-items: center;
+      }
+
+      .movie-card {
+        cursor: pointer;
+        background-color: #1a1a1a;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+        transition: transform 0.3s, box-shadow 0.3s;
+        width: 200px;
+      }
+
+      .movie-card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.8);
+      }
+
+      .movie-card img {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+        display: block;
+      }
+
+      .movie-card h3 {
+        text-align: center;
+        font-size: 1rem;
+        padding: 0.8rem;
+        margin: 0;
+        color: #fff;
+      }
+
+      footer {
+        text-align: center;
+        padding: 1rem;
+        font-size: 0.9rem;
+        color: #888;
+        border-top: 1px solid #222;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>🎬 ShareFilms - Catálogo de Películas</h1>
+    </header>
+
+    <main id="movie-list" class="catalog"></main>
+
+    <footer>© 2025 ShareFilms Oficial. Todos los derechos reservados.</footer>
+
+    <script src="script.js"></script>
+  </body>
 </html>
