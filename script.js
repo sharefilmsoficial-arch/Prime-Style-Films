@@ -1,143 +1,88 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+const sampleTrailer = "https://www.w3schools.com/html/mov_bbb.mp4"; // Tráiler genérico temporal
 
-body {
-  margin: 0;
-  background-color: #000;
-  color: white;
-  font-family: 'Inter', sans-serif;
-}
-
-header {
-  text-align: center;
-  padding: 1.5rem;
-  font-size: 1.5rem;
-  font-weight: 700;
-}
-
-.catalog {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1.5rem;
-  padding: 1.5rem;
-}
-
-.movie-card {
-  position: relative;
-  overflow: hidden;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
-.movie-card:hover {
-  transform: scale(1.05);
-}
-.movie-card img {
-  width: 100%;
-  height: 300px;
-  object-fit: cover;
-  border-radius: 10px;
-}
-.movie-card .overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 1rem;
-  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-}
-.movie-card .overlay h2 {
-  font-size: 1rem;
-  margin: 0;
-}
-
-/* --- Movie Detail --- */
-.movie-hero {
-  position: relative;
-  height: 100vh;
-  overflow: hidden;
-}
-
-.movie-hero video {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.overlay-gradient {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.95) 10%, rgba(0,0,0,0.7) 50%, transparent);
-}
-
-.movie-content {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  align-items: flex-end;
-  height: 100%;
-  padding: 2rem 4rem;
-  gap: 2rem;
-}
-
-.poster {
-  width: 220px;
-  border-radius: 10px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.6);
-}
-
-.info h1 {
-  font-size: 2.5rem;
-  font-weight: 800;
-}
-
-.info .meta {
-  color: #bbb;
-  margin-top: .5rem;
-}
-
-.description {
-  margin-top: 1rem;
-  max-width: 700px;
-  color: #ddd;
-}
-
-.actions {
-  margin-top: 1.5rem;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.8rem;
-}
-.actions button {
-  background-color: rgba(255,255,255,0.1);
-  border: none;
-  color: white;
-  padding: 0.6rem 1rem;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-.actions button.play {
-  background-color: white;
-  color: black;
-  font-weight: 600;
-}
-.actions button:hover {
-  background-color: rgba(255,255,255,0.25);
-}
-button.liked, button.added {
-  background-color: #e50914 !important;
-}
-
-.genres {
-  margin-top: 1rem;
-}
-.genres span {
-  background: rgba(255,255,255,0.1);
-  padding: 0.3rem 0.6rem;
-  border-radius: 5px;
-  margin-right: 0.4rem;
-  font-size: 0.8rem;
-}
+const movies = [
+  {
+    id: "contracara",
+    title: "Contracara",
+    year: 1997,
+    duration: "2h 18min",
+    rating: "R",
+    genres: ["Acción", "Thriller", "Crimen"],
+    description:
+      "Un agente del FBI se somete a una cirugía experimental para asumir la identidad del terrorista que mató a su hijo. Pero las cosas salen terriblemente mal.",
+    trailerUrl: sampleTrailer,
+    poster: "https://apeiros173.github.io/ShareFilms-Peliculas-Gratis/contracara.jpeg",
+    rentPrice: "MX$60.00",
+    buyPrice: "MX$159.00",
+  },
+  {
+    id: "interestelar",
+    title: "Interestelar",
+    year: 2014,
+    duration: "2h 49min",
+    rating: "PG-13",
+    genres: ["Ciencia ficción", "Drama", "Aventura"],
+    description:
+      "Un grupo de astronautas viaja a través de un agujero de gusano en busca de un nuevo hogar para la humanidad mientras la Tierra agoniza.",
+    trailerUrl: sampleTrailer,
+    poster: "https://apeiros173.github.io/ShareFilms-Peliculas-Gratis/interestelar.jpeg",
+    rentPrice: "MX$75.00",
+    buyPrice: "MX$199.00",
+  },
+  {
+    id: "karatekid1984",
+    title: "Karate Kid (1984)",
+    year: 1984,
+    duration: "2h 6min",
+    rating: "PG",
+    genres: ["Drama", "Deportes", "Inspiradora"],
+    description:
+      "Daniel se muda a California y sufre acoso hasta que un sabio maestro de karate, el Sr. Miyagi, le enseña el arte del equilibrio y la disciplina.",
+    trailerUrl: sampleTrailer,
+    poster: "https://apeiros173.github.io/ShareFilms-Peliculas-Gratis/karatekid1984.jpeg",
+    rentPrice: "MX$50.00",
+    buyPrice: "MX$139.00",
+  },
+  {
+    id: "laleyendadeloschaneques",
+    title: "La Leyenda de los Chaneques",
+    year: 2023,
+    duration: "1h 25min",
+    rating: "A",
+    genres: ["Animación", "Fantasía", "Aventura"],
+    description:
+      "Leo San Juan y sus amigos viajan a Veracruz, donde descubren que unos traviesos chaneques están causando estragos en la región.",
+    trailerUrl: sampleTrailer,
+    poster: "https://apeiros173.github.io/ShareFilms-Peliculas-Gratis/laleyendadeloschaneques.jpeg",
+    rentPrice: "MX$40.00",
+    buyPrice: "MX$120.00",
+  },
+  {
+    id: "venom3",
+    title: "Venom 3: The Last Dance",
+    year: 2024,
+    duration: "2h 0min",
+    rating: "PG-13",
+    genres: ["Acción", "Ciencia ficción"],
+    description:
+      "Eddie Brock y Venom están al borde de su última batalla cuando nuevas amenazas surgen y la línea entre héroe y villano se desdibuja.",
+    trailerUrl: sampleTrailer,
+    poster: "https://apeiros173.github.io/ShareFilms-Peliculas-Gratis/venom3.jpeg",
+    rentPrice: "MX$80.00",
+    buyPrice: "MX$220.00",
+  },
+  {
+    id: "tiempocongelado",
+    title: "Tiempo Congelado",
+    year: 2024,
+    duration: "1h 55min",
+    rating: "PG-13",
+    genres: ["Suspenso", "Drama", "Ciencia ficción"],
+    description:
+      "Un científico descubre accidentalmente una forma de detener el tiempo, pero pronto se da cuenta de que cada segundo congelado tiene un precio terrible.",
+    trailerUrl: sampleTrailer,
+    poster: "https://apeiros173.github.io/ShareFilms-Peliculas-Gratis/tiempocongelado.jpeg",
+    rentPrice: "MX$70.00",
+    buyPrice: "MX$199.00",
+  },
+];
